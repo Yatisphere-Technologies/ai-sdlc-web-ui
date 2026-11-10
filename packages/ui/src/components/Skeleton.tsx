@@ -1,6 +1,6 @@
 import { cn } from "../lib/cn";
 
-/** Loading placeholder that shimmers like agent work. */
+/** Loading placeholder: neutral blocks that light up in turn (siblings stagger). Use `bg-working` for agent progress. */
 export function Skeleton({ className }: { className?: string }) {
-  return <div aria-hidden className={cn("bg-working rounded-md opacity-60", className)} />;
+  return <div aria-hidden className={cn("bg-skeleton rounded-md", className)} />;
 }
