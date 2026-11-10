@@ -1,0 +1,54 @@
+{
+  "_note": "Light print palette for exported .drawio files. These are file-format colours for a white draw.io canvas, kept out of TS so UI code only ever uses design tokens.",
+  "font": "Helvetica",
+  "text": "#1F2937",
+  "muted": "#6B7280",
+  "card": "#FFFFFF",
+  "category": {
+    "person": "#5B6BD6",
+    "edge": "#3B6FE0",
+    "compute": "#0F9F7F",
+    "data": "#C77C02",
+    "integration": "#8A5CF6",
+    "network": "#0A84C6",
+    "security": "#D4351C",
+    "identity": "#5B6BD6",
+    "ops": "#2E9E5B",
+    "ai": "#D0459B",
+    "external": "#6B7280",
+    "system": "#0F9F7F"
+  },
+  "edge": {
+    "request": { "color": "#4B5563" },
+    "async": { "color": "#8A5CF6", "dash": "6 4" },
+    "data": { "color": "#C77C02" },
+    "identity": { "color": "#5B6BD6", "dash": "2 4" },
+    "admin": { "color": "#2E9E5B", "dash": "8 4" },
+    "replication": { "color": "#C77C02", "dash": "10 5" },
+    "private": { "color": "#0A84C6" }
+  },
+  "control": { "fill": "#FDECEA", "color": "#D4351C" },
+  "group": {
+    "cloud": { "stroke": "#232F3E", "fill": "none", "font": "#232F3E", "dashed": false },
+    "region": { "stroke": "#147EBA", "fill": "none", "font": "#147EBA", "dashed": true },
+    "network": { "stroke": "#248814", "fill": "#F2F8EE", "font": "#248814", "dashed": false },
+    "subnet": { "stroke": "#7AA116", "fill": "#FAFCF5", "font": "#4E6B0D", "dashed": true },
+    "onprem": { "stroke": "#5A6C86", "fill": "#F4F6F8", "font": "#5A6C86", "dashed": true },
+    "external": { "stroke": "#9CA3AF", "fill": "none", "font": "#6B7280", "dashed": true },
+    "boundary": { "stroke": "#0F9F7F", "fill": "none", "font": "#0F9F7F", "dashed": true },
+    "zone": { "stroke": "#6B7280", "fill": "none", "font": "#374151", "dashed": true }
+  },
+  "trust": {
+    "untrusted": { "stroke": "#D4351C", "fill": "#FDF3F1" },
+    "dmz": { "stroke": "#C77C02", "fill": "#FEF8EC" },
+    "trusted": { "stroke": "#0F9F7F", "fill": "#EEF9F5" },
+    "restricted": { "stroke": "#B45309", "fill": "#FFF4E5" },
+    "management": { "stroke": "#3B6FE0", "fill": "#EFF4FF" }
+  },
+  "cloudGroup": {
+    "azure": { "cloud": "#0078D4", "region": "#0078D4", "network": "#3B8A3E", "subnet": "#6F9F3B" },
+    "aws": { "cloud": "#232F3E", "region": "#00A4A6", "network": "#8C4FFF", "subnet": "#00A4A6" },
+    "gcp": { "cloud": "#4285F4", "region": "#4285F4", "network": "#34A853", "subnet": "#34A853" },
+    "on-prem": { "cloud": "#5A6C86", "region": "#5A6C86", "network": "#5A6C86", "subnet": "#7AA116" }
+  }
+}

@@ -1,0 +1,11 @@
+// Tailwind's default palette is cleared in tokens.css, so these classes silently do nothing.
+language js
+
+or {
+  JsStringLiteralExpression() as $s,
+  JsxString() as $s,
+  JsTemplateChunkElement() as $s
+} where {
+  $s <: r"[\s\S]*-slate-[0-9][\s\S]*|[\s\S]*-gray-[0-9][\s\S]*|[\s\S]*-zinc-[0-9][\s\S]*|[\s\S]*-neutral-[0-9][\s\S]*|[\s\S]*-stone-[0-9][\s\S]*|[\s\S]*-red-[0-9][\s\S]*|[\s\S]*-orange-[0-9][\s\S]*|[\s\S]*-amber-[0-9][\s\S]*|[\s\S]*-yellow-[0-9][\s\S]*|[\s\S]*-lime-[0-9][\s\S]*|[\s\S]*-green-[0-9][\s\S]*|[\s\S]*-emerald-[0-9][\s\S]*|[\s\S]*-teal-[0-9][\s\S]*|[\s\S]*-cyan-[0-9][\s\S]*|[\s\S]*-sky-[0-9][\s\S]*|[\s\S]*-blue-[0-9][\s\S]*|[\s\S]*-indigo-[0-9][\s\S]*|[\s\S]*-violet-[0-9][\s\S]*|[\s\S]*-purple-[0-9][\s\S]*|[\s\S]*-fuchsia-[0-9][\s\S]*|[\s\S]*-pink-[0-9][\s\S]*|[\s\S]*-rose-[0-9][\s\S]*|[\s\S]*\bbg-white\b[\s\S]*|[\s\S]*\bbg-black\b[\s\S]*|[\s\S]*\btext-white\b[\s\S]*|[\s\S]*\btext-black\b[\s\S]*",
+  register_diagnostic(span=$s, message="Tailwind default palette class (e.g. bg-blue-500, text-white). Use a semantic token class such as bg-surface or text-strong.", severity="error")
+}

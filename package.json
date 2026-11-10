@@ -1,0 +1,24 @@
+{
+  "name": "ai-owning-sdlc",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @throughline/web dev",
+    "dev:live": "pnpm --filter @throughline/web dev:live",
+    "build": "pnpm --filter @throughline/web build",
+    "preview": "pnpm --filter @throughline/web preview",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test:run",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "check": "pnpm lint && pnpm typecheck && pnpm test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.3",
+    "typescript": "^7.0.2"
+  }
+}

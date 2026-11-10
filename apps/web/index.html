@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      // Apply the saved theme before first paint (see src/theme/theme.ts). Public pages stay dark.
+      (() => {
+        let light = false;
+        try {
+          const c = localStorage.getItem("throughline.theme");
+          const pub = location.pathname === "/" || location.pathname === "/login";
+          light = !pub && (c === "light" || (c === "system" && matchMedia("(prefers-color-scheme: light)").matches));
+        } catch {
+          light = false;
+        }
+        document.documentElement.dataset.theme = light ? "light" : "dark";
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Throughline</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

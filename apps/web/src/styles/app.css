@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@import "@throughline/tokens/tokens.css";
+
+/* Tailwind must also scan the shared packages for class names. */
+@source "../../../../packages/ui/src";
+@source "../../../../packages/collab/src";

@@ -1,0 +1,9 @@
+{
+  "_note": "Print colours for exported Word files (hex without #, as docx expects). File-format colours, kept out of TS so UI code only uses design tokens.",
+  "font": "Calibri",
+  "text": "1F2937",
+  "muted": "6B7280",
+  "accent": "0F9F7F",
+  "border": "D1D5DB",
+  "headerFill": "F3F4F6"
+}

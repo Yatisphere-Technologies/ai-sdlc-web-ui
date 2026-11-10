@@ -1,0 +1,7 @@
+// Typography and colour belong in token classes, not inline styles.
+language js
+
+JsxAttribute() as $a where {
+  $a <: r"style=[\s\S]*fontSize[\s\S]*|style=[\s\S]*fontFamily[\s\S]*|style=[\s\S]*fontWeight[\s\S]*|style=[\s\S]*lineHeight[\s\S]*|style=[\s\S]*letterSpacing[\s\S]*|style=[\s\S]*[cC]olor[\s\S]*|style=[\s\S]*background[\s\S]*",
+  register_diagnostic(span=$a, message="Inline typography/colour style. Use token classes (text-heading-md, text-muted, …).", severity="error")
+}

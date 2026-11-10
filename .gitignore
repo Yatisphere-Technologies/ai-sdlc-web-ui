@@ -1,0 +1,14 @@
+node_modules
+dist
+coverage
+*.tsbuildinfo
+.env*.local
+.DS_Store
+test-results
+playwright-report
+
+# added before first push
+.env
+.env.*
+!.env.example
+.tanstack/

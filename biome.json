@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": { "enabled": false },
+  "files": {
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/routeTree.gen.ts",
+      "!**/public",
+      "!pnpm-lock.yaml",
+      "!**/icons/azure",
+      "!**/brand/logos"
+    ]
+  },
+  "plugins": [
+    "./biome-plugins/no-raw-colors.grit",
+    "./biome-plugins/no-arbitrary-design-values.grit",
+    "./biome-plugins/no-tailwind-palette.grit",
+    "./biome-plugins/no-inline-typography.grit",
+    "./biome-plugins/no-raw-colors-css.grit"
+  ],
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 110
+  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "linter": {
+    "enabled": true,
+    "domains": { "react": "recommended", "test": "recommended" },
+    "rules": {
+      "preset": "recommended",
+      "correctness": { "noUnusedImports": "error", "noUnusedVariables": "error" },
+      "style": { "noNonNullAssertion": "error", "useImportType": "error" },
+      "suspicious": { "noConsole": { "level": "warn", "options": { "allow": ["warn", "error", "info"] } } },
+      "nursery": {
+        "useTailwindSortedClasses": { "level": "warn", "fix": "safe" }
+      }
+    }
+  },
+  "css": { "parser": { "tailwindDirectives": true } }
+}

@@ -1,0 +1,11 @@
+// Colours must come from design tokens (packages/tokens/src/tokens.css), never literals in TS/TSX.
+language js
+
+or {
+  JsStringLiteralExpression() as $s,
+  JsxString() as $s,
+  JsTemplateChunkElement() as $s
+} where {
+  $s <: r"[\s\S]*#[0-9a-fA-F]{3,8}\b[\s\S]*|[\s\S]*rgba?\([\s\S]*|[\s\S]*hsla?\([\s\S]*|[\s\S]*oklch\([\s\S]*|[\s\S]*oklab\([\s\S]*",
+  register_diagnostic(span=$s, message="Raw colour value. Use a semantic token class (bg-surface, text-muted, text-agent …) from packages/tokens/src/tokens.css.", severity="error")
+}

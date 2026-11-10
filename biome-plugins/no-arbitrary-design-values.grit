@@ -1,0 +1,12 @@
+// Sizes, spacing, radii and colours must come from the token scale, not Tailwind arbitrary values.
+// Structural arbitrary values (grid templates, data-[state=…] variants, calc offsets) are allowed.
+language js
+
+or {
+  JsStringLiteralExpression() as $s,
+  JsxString() as $s,
+  JsTemplateChunkElement() as $s
+} where {
+  $s <: r"[\s\S]*-\[#[\s\S]*|[\s\S]*-\[rgb[\s\S]*|[\s\S]*-\[hsl[\s\S]*|[\s\S]*-\[oklch[\s\S]*|[\s\S]*-\[color:[\s\S]*|[\s\S]*-\[length:[\s\S]*|[\s\S]*-\[-?[0-9.]+px\][\s\S]*|[\s\S]*-\[-?[0-9.]+rem\][\s\S]*|[\s\S]*-\[-?[0-9.]+em\][\s\S]*|[\s\S]*-\[-?[0-9.]+%\][\s\S]*|[\s\S]*-\[-?[0-9.]+vh\][\s\S]*|[\s\S]*-\[-?[0-9.]+vw\][\s\S]*",
+  register_diagnostic(span=$s, message="Arbitrary Tailwind design value (e.g. text-[13px], p-[7px]). Use the token scale, or add a token to packages/tokens/src/tokens.css.", severity="error")
+}

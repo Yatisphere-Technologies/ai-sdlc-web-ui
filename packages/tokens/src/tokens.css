@@ -1,0 +1,705 @@
+/*
+ * Throughline design tokens. The ONLY file where raw colours, fonts, sizes and motion curves live.
+ * Lint (biome-plugins/) rejects raw values anywhere else.
+ *
+ * Layers
+ *   1. Primitives  (--palette-*)   brand values. Never referenced by components.
+ *   2. Semantic    (--surface, --agent, --gate …)  meaning. Dark-first; a light theme
+ *                  only has to redefine this layer.
+ *   3. Tailwind    (@theme)  exposes ONLY semantic tokens as utilities. Tailwind's default
+ *                  palette, radii and shadows are cleared, so `bg-blue-500` does nothing.
+ *
+ * Colour meaning (keep it consistent everywhere):
+ *   agent  (mint)   agents and anything moving
+ *   gate   (amber)  a human decision is needed here
+ *   ion    (blue)   secondary flow, requirement keywords
+ *   ok     (green)  verified / approved
+ *   risk   (red)    failure, incident, danger
+ *   human           a person, as opposed to an agent
+ */
+
+/* ── 1. Primitives ─────────────────────────────────────────────────────────── */
+:root {
+  --palette-void: #060a17;
+  --palette-deck: #0b1226;
+  --palette-raised: #111a33;
+  --palette-sunken: #03060f;
+  --palette-nav: #080e20;
+  --palette-hairline: #1c2848;
+  --palette-line-strong: #2a3a63;
+  --palette-starlight: #eaf0ff;
+  --palette-white: #ffffff;
+  --palette-haze: #93a1c3;
+  --palette-haze-light: #b4c0dc;
+  --palette-haze-dim: #6f7fa6;
+  --palette-haze-ghost: #3d4c75;
+  --palette-code: #d5ddf2;
+
+  --palette-mint: #3ee6c1;
+  --palette-mint-light: #8cf2da;
+  --palette-mint-ink: #04221c;
+  --palette-mint-deep: #0e2e2a;
+  --palette-mint-wash: #0b1f1e;
+  --palette-mint-line: #1f5a4f;
+
+  --palette-amber: #f5b84b;
+  --palette-amber-light: #f5d49b;
+  --palette-amber-ink: #2b1a00;
+  --palette-amber-deep: #2e220a;
+  --palette-amber-wash: #1c160a;
+  --palette-amber-line: #5a4520;
+
+  --palette-ion: #6e8bff;
+  --palette-ion-light: #9fb2ff;
+  --palette-ion-deep: #141e45;
+  --palette-periwinkle: #c9d3ff;
+  --palette-periwinkle-deep: #1a2550;
+
+  --palette-green: #7fe3a6;
+  --palette-green-deep: #10301f;
+  --palette-green-wash: #0d2419;
+  --palette-green-line: #1f5a3a;
+
+  --palette-coral: #ff6b5e;
+  --palette-coral-light: #ff9c8f;
+  --palette-coral-deep: #2a1018;
+  --palette-coral-line: #5a2530;
+
+  /* Diagram categories (architecture studio only) */
+  --palette-violet: #b48cff;
+  --palette-violet-deep: #22183f;
+  --palette-sky: #5cc8ff;
+  --palette-sky-deep: #0b2638;
+  --palette-pink: #ff8fd0;
+  --palette-pink-deep: #35122b;
+
+  --palette-grid-dot: rgb(147 161 195 / 0.12);
+  --palette-mint-glow: rgb(62 230 193 / 0.45);
+  --palette-mint-shimmer-low: rgb(62 230 193 / 0.12);
+  --palette-mint-shimmer-high: rgb(62 230 193 / 0.75);
+  --palette-scrim: rgb(6 10 23 / 0.8);
+  --palette-diff-add: rgb(127 227 166 / 0.07);
+  --palette-diff-del: rgb(255 107 94 / 0.08);
+
+  /* Neutral (light) theme */
+  --palette-paper: #f5f6f8;
+  --palette-sheet: #ffffff;
+  --palette-sheet-raised: #f0f2f5;
+  --palette-sheet-sunken: #e9ecf1;
+  --palette-ink-line: #dfe3ea;
+  --palette-ink-line-strong: #c7cdd8;
+  --palette-ink: #1a2030;
+  --palette-ink-strong: #0a0e18;
+  --palette-ink-muted: #556074;
+  --palette-ink-subtle: #3c4558;
+  --palette-ink-faint: #7a8496;
+  --palette-ink-ghost: #a8afbc;
+  --palette-ink-code: #283044;
+  --palette-teal: #0e9a7f;
+  --palette-teal-dark: #087260;
+  --palette-teal-soft: #d4f3ec;
+  --palette-teal-wash: #ecf9f6;
+  --palette-teal-line: #94d9c9;
+  --palette-ochre: #e8a024;
+  --palette-ochre-dark: #8f5a00;
+  --palette-ochre-soft: #fbe9c6;
+  --palette-ochre-wash: #fff7e8;
+  --palette-ochre-line: #ecc98a;
+  --palette-cobalt: #4460e0;
+  --palette-cobalt-dark: #2f49bd;
+  --palette-cobalt-soft: #e2e8ff;
+  --palette-indigo: #4650a6;
+  --palette-indigo-soft: #e5e8fa;
+  --palette-leaf: #1b8f4e;
+  --palette-leaf-soft: #d8f1e2;
+  --palette-leaf-wash: #eef9f2;
+  --palette-leaf-line: #9dd5b3;
+  --palette-brick: #cf3a2e;
+  --palette-brick-dark: #b23126;
+  --palette-brick-soft: #fde3df;
+  --palette-brick-line: #f0aea6;
+  --palette-plum: #7a4bd2;
+  --palette-plum-soft: #ece3fb;
+  --palette-azure: #1a87c9;
+  --palette-azure-soft: #dbeffa;
+  --palette-rose: #c23a90;
+  --palette-rose-soft: #fbe1f0;
+  --palette-paper-scrim: rgb(245 246 248 / 0.82);
+  --palette-paper-dot: rgb(26 32 48 / 0.07);
+  --palette-teal-shimmer-low: rgb(14 154 127 / 0.12);
+  --palette-teal-shimmer-high: rgb(14 154 127 / 0.6);
+  --palette-leaf-add: rgb(27 143 78 / 0.1);
+  --palette-brick-del: rgb(207 58 46 / 0.1);
+
+  --font-family-display: "Unbounded", "Geist Variable", system-ui, sans-serif;
+  --font-family-sans: "Geist Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-family-mono: "Martian Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-spring: cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+/* ── 2. Semantic (dark, the default) ──────────────────────────────────────── */
+/* `data-theme` on <html> picks the theme; a subtree can pin one with its own `data-theme`. */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: var(--palette-void);
+  --surface: var(--palette-deck);
+  --surface-raised: var(--palette-raised);
+  --surface-sunken: var(--palette-sunken);
+  --surface-nav: var(--palette-nav);
+  --line: var(--palette-hairline);
+  --line-strong: var(--palette-line-strong);
+
+  --foreground: var(--palette-starlight);
+  --strong: var(--palette-white);
+  --muted: var(--palette-haze);
+  --subtle: var(--palette-haze-light);
+  --faint: var(--palette-haze-dim);
+  --ghost: var(--palette-haze-ghost);
+  --code: var(--palette-code);
+
+  --agent: var(--palette-mint);
+  --agent-fg: var(--palette-mint-light);
+  --agent-ink: var(--palette-mint-ink);
+  --agent-soft: var(--palette-mint-deep);
+  --agent-wash: var(--palette-mint-wash);
+  --agent-line: var(--palette-mint-line);
+
+  --gate: var(--palette-amber);
+  --gate-fg: var(--palette-amber-light);
+  --gate-ink: var(--palette-amber-ink);
+  --gate-soft: var(--palette-amber-deep);
+  --gate-wash: var(--palette-amber-wash);
+  --gate-line: var(--palette-amber-line);
+
+  --ion: var(--palette-ion);
+  --ion-fg: var(--palette-ion-light);
+  --ion-soft: var(--palette-ion-deep);
+
+  --human-fg: var(--palette-periwinkle);
+  --human-soft: var(--palette-periwinkle-deep);
+
+  --ok: var(--palette-green);
+  --ok-soft: var(--palette-green-deep);
+  --ok-wash: var(--palette-green-wash);
+  --ok-line: var(--palette-green-line);
+
+  --risk: var(--palette-coral);
+  --risk-fg: var(--palette-coral-light);
+  --risk-soft: var(--palette-coral-deep);
+  --risk-line: var(--palette-coral-line);
+
+  --scrim: var(--palette-scrim);
+  --diff-add: var(--palette-diff-add);
+  --diff-del: var(--palette-diff-del);
+  --focus-ring: var(--palette-mint);
+  --elev-lift: 0 40px 120px rgb(0 0 0 / 0.5);
+  --elev-raise: 0 12px 32px rgb(0 0 0 / 0.35);
+  --elev-glow: 0 0 14px var(--palette-mint-glow);
+  --grid-dot: var(--palette-grid-dot);
+  --shimmer-low: var(--palette-mint-shimmer-low);
+  --shimmer-high: var(--palette-mint-shimmer-high);
+
+  /* Architecture diagrams: one colour per kind of component, used only on diagrams */
+  --dg-person: var(--palette-periwinkle);
+  --dg-person-soft: var(--palette-periwinkle-deep);
+  --dg-edge: var(--palette-ion);
+  --dg-edge-soft: var(--palette-ion-deep);
+  --dg-compute: var(--palette-mint);
+  --dg-compute-soft: var(--palette-mint-deep);
+  --dg-data: var(--palette-amber);
+  --dg-data-soft: var(--palette-amber-deep);
+  --dg-integration: var(--palette-violet);
+  --dg-integration-soft: var(--palette-violet-deep);
+  --dg-network: var(--palette-sky);
+  --dg-network-soft: var(--palette-sky-deep);
+  --dg-security: var(--palette-coral);
+  --dg-security-soft: var(--palette-coral-deep);
+  --dg-identity: var(--palette-periwinkle);
+  --dg-identity-soft: var(--palette-periwinkle-deep);
+  --dg-ops: var(--palette-green);
+  --dg-ops-soft: var(--palette-green-deep);
+  --dg-ai: var(--palette-pink);
+  --dg-ai-soft: var(--palette-pink-deep);
+  --dg-external: var(--palette-haze);
+  --dg-external-soft: var(--palette-raised);
+  /* Behind third-party logos, which are drawn for light backgrounds and must not be recoloured. */
+  --brand-tile: var(--palette-starlight);
+}
+
+/* Neutral (light) theme: only the semantic layer changes. */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --background: var(--palette-paper);
+  --surface: var(--palette-sheet);
+  --surface-raised: var(--palette-sheet-raised);
+  --surface-sunken: var(--palette-sheet-sunken);
+  --surface-nav: var(--palette-sheet);
+  --line: var(--palette-ink-line);
+  --line-strong: var(--palette-ink-line-strong);
+
+  --foreground: var(--palette-ink);
+  --strong: var(--palette-ink-strong);
+  --muted: var(--palette-ink-muted);
+  --subtle: var(--palette-ink-subtle);
+  --faint: var(--palette-ink-faint);
+  --ghost: var(--palette-ink-ghost);
+  --code: var(--palette-ink-code);
+
+  --agent: var(--palette-teal);
+  --agent-fg: var(--palette-teal-dark);
+  --agent-ink: var(--palette-white);
+  --agent-soft: var(--palette-teal-soft);
+  --agent-wash: var(--palette-teal-wash);
+  --agent-line: var(--palette-teal-line);
+
+  --gate: var(--palette-ochre);
+  --gate-fg: var(--palette-ochre-dark);
+  --gate-ink: var(--palette-amber-ink);
+  --gate-soft: var(--palette-ochre-soft);
+  --gate-wash: var(--palette-ochre-wash);
+  --gate-line: var(--palette-ochre-line);
+
+  --ion: var(--palette-cobalt);
+  --ion-fg: var(--palette-cobalt-dark);
+  --ion-soft: var(--palette-cobalt-soft);
+
+  --human-fg: var(--palette-indigo);
+  --human-soft: var(--palette-indigo-soft);
+
+  --ok: var(--palette-leaf);
+  --ok-soft: var(--palette-leaf-soft);
+  --ok-wash: var(--palette-leaf-wash);
+  --ok-line: var(--palette-leaf-line);
+
+  --risk: var(--palette-brick);
+  --risk-fg: var(--palette-brick-dark);
+  --risk-soft: var(--palette-brick-soft);
+  --risk-line: var(--palette-brick-line);
+
+  --scrim: var(--palette-paper-scrim);
+  --diff-add: var(--palette-leaf-add);
+  --diff-del: var(--palette-brick-del);
+  --focus-ring: var(--palette-teal);
+  --elev-lift: 0 24px 64px rgb(16 24 40 / 0.16);
+  --elev-raise: 0 8px 24px rgb(16 24 40 / 0.12);
+  --elev-glow: 0 0 0 3px var(--palette-teal-soft);
+  --grid-dot: var(--palette-paper-dot);
+  --shimmer-low: var(--palette-teal-shimmer-low);
+  --shimmer-high: var(--palette-teal-shimmer-high);
+
+  --dg-person: var(--palette-indigo);
+  --dg-person-soft: var(--palette-indigo-soft);
+  --dg-edge: var(--palette-cobalt);
+  --dg-edge-soft: var(--palette-cobalt-soft);
+  --dg-compute: var(--palette-teal);
+  --dg-compute-soft: var(--palette-teal-soft);
+  --dg-data: var(--palette-ochre-dark);
+  --dg-data-soft: var(--palette-ochre-soft);
+  --dg-integration: var(--palette-plum);
+  --dg-integration-soft: var(--palette-plum-soft);
+  --dg-network: var(--palette-azure);
+  --dg-network-soft: var(--palette-azure-soft);
+  --dg-security: var(--palette-brick);
+  --dg-security-soft: var(--palette-brick-soft);
+  --dg-identity: var(--palette-indigo);
+  --dg-identity-soft: var(--palette-indigo-soft);
+  --dg-ops: var(--palette-leaf);
+  --dg-ops-soft: var(--palette-leaf-soft);
+  --dg-ai: var(--palette-rose);
+  --dg-ai-soft: var(--palette-rose-soft);
+  --dg-external: var(--palette-ink-muted);
+  --dg-external-soft: var(--palette-sheet-raised);
+  --brand-tile: var(--palette-white);
+}
+
+/* ── 3. Tailwind theme ────────────────────────────────────────────────────── */
+@theme inline {
+  --color-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-nav: var(--surface-nav);
+  --color-brand-tile: var(--brand-tile);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-foreground: var(--foreground);
+  --color-strong: var(--strong);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-faint: var(--faint);
+  --color-ghost: var(--ghost);
+  --color-code: var(--code);
+  --color-agent: var(--agent);
+  --color-agent-fg: var(--agent-fg);
+  --color-agent-ink: var(--agent-ink);
+  --color-agent-soft: var(--agent-soft);
+  --color-agent-wash: var(--agent-wash);
+  --color-agent-line: var(--agent-line);
+  --color-gate: var(--gate);
+  --color-gate-fg: var(--gate-fg);
+  --color-gate-ink: var(--gate-ink);
+  --color-gate-soft: var(--gate-soft);
+  --color-gate-wash: var(--gate-wash);
+  --color-gate-line: var(--gate-line);
+  --color-ion: var(--ion);
+  --color-ion-fg: var(--ion-fg);
+  --color-ion-soft: var(--ion-soft);
+  --color-human-fg: var(--human-fg);
+  --color-human-soft: var(--human-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-ok-wash: var(--ok-wash);
+  --color-ok-line: var(--ok-line);
+  --color-risk: var(--risk);
+  --color-risk-fg: var(--risk-fg);
+  --color-risk-soft: var(--risk-soft);
+  --color-risk-line: var(--risk-line);
+  --color-scrim: var(--scrim);
+  --color-diff-add: var(--diff-add);
+  --color-diff-del: var(--diff-del);
+  --color-dg-person: var(--dg-person);
+  --color-dg-person-soft: var(--dg-person-soft);
+  --color-dg-edge: var(--dg-edge);
+  --color-dg-edge-soft: var(--dg-edge-soft);
+  --color-dg-compute: var(--dg-compute);
+  --color-dg-compute-soft: var(--dg-compute-soft);
+  --color-dg-data: var(--dg-data);
+  --color-dg-data-soft: var(--dg-data-soft);
+  --color-dg-integration: var(--dg-integration);
+  --color-dg-integration-soft: var(--dg-integration-soft);
+  --color-dg-network: var(--dg-network);
+  --color-dg-network-soft: var(--dg-network-soft);
+  --color-dg-security: var(--dg-security);
+  --color-dg-security-soft: var(--dg-security-soft);
+  --color-dg-identity: var(--dg-identity);
+  --color-dg-identity-soft: var(--dg-identity-soft);
+  --color-dg-ops: var(--dg-ops);
+  --color-dg-ops-soft: var(--dg-ops-soft);
+  --color-dg-ai: var(--dg-ai);
+  --color-dg-ai-soft: var(--dg-ai-soft);
+  --color-dg-external: var(--dg-external);
+  --color-dg-external-soft: var(--dg-external-soft);
+
+  --font-display: var(--font-family-display);
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+
+  /* Type scale: size, line height, tracking, weight */
+  --text-display-xl: 4rem;
+  --text-display-xl--line-height: 4.5rem;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-xl--font-weight: 700;
+  --text-display-lg: 2.5rem;
+  --text-display-lg--line-height: 2.875rem;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 700;
+  --text-display-md: 2.125rem;
+  --text-display-md--line-height: 2.5rem;
+  --text-display-md--letter-spacing: -0.02em;
+  --text-display-md--font-weight: 700;
+  --text-metric-lg: 1.75rem;
+  --text-metric-lg--line-height: 2rem;
+  --text-metric-lg--font-weight: 600;
+  --text-metric: 1.375rem;
+  --text-metric--line-height: 1.75rem;
+  --text-metric--font-weight: 600;
+  --text-heading-lg: 1.5rem;
+  --text-heading-lg--line-height: 1.875rem;
+  --text-heading-lg--font-weight: 600;
+  --text-heading-md: 1.125rem;
+  --text-heading-md--line-height: 1.5rem;
+  --text-heading-md--font-weight: 600;
+  --text-heading-sm: 1rem;
+  --text-heading-sm--line-height: 1.375rem;
+  --text-heading-sm--font-weight: 600;
+  --text-body-lg: 1rem;
+  --text-body-lg--line-height: 1.5rem;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.3125rem;
+  --text-body-sm: 0.8125rem;
+  --text-body-sm--line-height: 1.1875rem;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.0625rem;
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1rem;
+  --text-nano: 0.625rem;
+  --text-nano--line-height: 0.875rem;
+
+  --tracking-eyebrow: 0.14em;
+  --tracking-label: 0.08em;
+
+  /* Square-cornered system: small controls 2px, every box and panel 4px. Change the look here only. */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.25rem;
+  --radius-2xl: 0.25rem;
+  --radius-full: 9999px;
+
+  --shadow-glow: var(--elev-glow);
+  --shadow-lift: var(--elev-lift);
+  --shadow-raise: var(--elev-raise);
+
+  --ease-out-soft: var(--ease-out-soft);
+  --ease-spring: var(--ease-spring);
+
+  --animate-rise: rise 0.7s var(--ease-out-soft) both;
+  --animate-pop: pop 0.5s var(--ease-spring) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-caret: caret 1s steps(2) infinite;
+  --animate-flow: flow 1.1s linear infinite;
+  --animate-travel: travel 14s linear infinite;
+  --animate-spin: spin 0.8s linear infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+  @keyframes caret {
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes flow {
+    to {
+      stroke-dashoffset: -24;
+    }
+  }
+  @keyframes travel {
+    0% {
+      left: 0%;
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      left: calc(100% - 8px);
+      opacity: 0;
+    }
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  html,
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--agent-line);
+  }
+}
+
+/* ── Motion and texture utilities (named by meaning) ──────────────────────── */
+@layer utilities {
+  /* Dot-grid ground used behind every page */
+  .bg-grid {
+    background-color: var(--background);
+    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  /* An agent is working: shimmering bar */
+  .bg-working {
+    background: linear-gradient(
+      90deg,
+      var(--shimmer-low) 0%,
+      var(--shimmer-high) 50%,
+      var(--shimmer-low) 100%
+    );
+    background-size: 200% 100%;
+    animation: var(--animate-shimmer);
+  }
+  /* Something is live: pulsing ring in the element's current colour */
+  .live-ping {
+    position: relative;
+  }
+  .live-ping::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 9999px;
+    border: 2px solid currentColor;
+    animation: live-ping 1.8s ease-out infinite;
+  }
+  @keyframes live-ping {
+    0% {
+      opacity: 0.8;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.9);
+    }
+  }
+  /* Work moving between stages: dashed line flowing */
+  .flow-dash {
+    stroke-dasharray: 4 8;
+    animation: var(--animate-flow);
+  }
+  /* A work item travelling along the lifecycle */
+  .packet {
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    margin-top: -4px;
+    border-radius: 9999px;
+    background: currentColor;
+    box-shadow: 0 0 14px currentColor;
+    animation: var(--animate-travel);
+  }
+  /* Cards lift on hover */
+  .hover-lift {
+    transition:
+      transform 0.25s var(--ease-out-soft),
+      border-color 0.25s ease,
+      background-color 0.25s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-3px);
+    border-color: var(--agent);
+  }
+  /* Buttons press */
+  .press {
+    transition:
+      transform 0.12s ease,
+      filter 0.2s ease,
+      background-color 0.2s ease;
+  }
+  .press:hover:not(:disabled) {
+    filter: brightness(1.08);
+  }
+  .press:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  /* Sparklines draw in */
+  .draw-in {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: draw-in 1.6s ease-out 0.3s forwards;
+  }
+  @keyframes draw-in {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  /* Marketing: dots travelling along the hero curve (set offset-path inline) */
+  .orbit {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: currentColor;
+    box-shadow: 0 0 16px currentColor;
+    animation: orbit 7s linear infinite;
+  }
+  @keyframes orbit {
+    from {
+      offset-distance: 0%;
+    }
+    to {
+      offset-distance: 100%;
+    }
+  }
+  /* Marketing: gently bobbing cards */
+  .float {
+    animation: float 5s ease-in-out infinite;
+  }
+  @keyframes float {
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  /* Marketing: endless strip of tool names */
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .fade-edges {
+    mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+  }
+  .bg-hero-wash {
+    background: linear-gradient(140deg, var(--agent-soft) 0%, var(--surface) 45%, var(--surface) 100%);
+  }
+  .eyebrow {
+    font-family: var(--font-family-mono);
+    font-size: var(--text-micro);
+    line-height: var(--text-micro--line-height);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: reduced motion must beat every component style */
+    animation: none !important;
+    /* biome-ignore lint/complexity/noImportantStyles: reduced motion must beat every component style */
+    transition: none !important;
+  }
+  .draw-in {
+    stroke-dashoffset: 0;
+  }
+}
