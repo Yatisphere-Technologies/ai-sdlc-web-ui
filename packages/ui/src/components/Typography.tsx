@@ -24,7 +24,7 @@ export function PageHeader({
     <header className={cn("animate-rise flex flex-wrap items-end justify-between gap-5", className)}>
       <div className="flex min-w-0 flex-col gap-2.5">
         {eyebrow ? <div className="flex items-center gap-2.5">{eyebrow}</div> : null}
-        <h1 className="font-display text-display-md text-strong">
+        <h1 className="font-display text-heading-lg text-strong sm:text-display-md text-balance">
           {title} {accent ? <span className="text-agent">{accent}</span> : null}
         </h1>
       </div>

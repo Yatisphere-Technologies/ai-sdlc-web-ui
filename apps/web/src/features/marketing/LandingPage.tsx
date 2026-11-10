@@ -42,7 +42,7 @@ export function LandingPage() {
         </section>
       </main>
       <footer className="border-line text-body-sm text-faint flex flex-wrap justify-between gap-4 border-t px-6 py-8 lg:px-12">
-        <span>© 2026 LatentBridge · Throughline is a working name</span>
+        <span>© 2026 Throughline</span>
         <div className="flex gap-6">
           <a href="#security" className="hover:text-strong">
             Trust

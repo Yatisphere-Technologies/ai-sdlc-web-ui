@@ -40,7 +40,7 @@ function List() {
       {brds.length === 0 ? (
         <EmptyState title="No BRDs yet" description="Start one and the BA agent will interview you." />
       ) : null}
-      <ul className="grid gap-3 lg:grid-cols-2">
+      <ul className="grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
         {brds.map((b) => {
           const score = brdScore(checkBrd(b.content));
           const backlog = backlogs.find((x) => x.brdId === b.id);

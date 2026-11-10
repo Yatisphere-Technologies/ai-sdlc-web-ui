@@ -16,7 +16,7 @@ export function TenantSwitcher() {
       <MenuTrigger asChild>
         <button
           type="button"
-          className="press border-line bg-surface hover:border-line-strong flex h-11 max-w-full cursor-pointer items-center gap-3 rounded-md border px-2.5 text-left"
+          className="press border-line bg-surface hover:border-line-strong flex h-11 w-full max-w-full cursor-pointer items-center gap-3 rounded-md border px-2.5 text-left sm:w-auto"
           aria-label={`Workspace: ${tenant.name}. Switch workspace`}
         >
           <TenantAvatar name={tenant.name} />

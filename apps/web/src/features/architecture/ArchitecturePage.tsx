@@ -160,7 +160,11 @@ function Studio({ arch }: { arch: Architecture }) {
         </Card>
       ) : null}
 
-      <div role="tablist" aria-label="Architecture studio" className="border-line flex gap-1 border-b">
+      <div
+        role="tablist"
+        aria-label="Architecture studio"
+        className="border-line flex gap-1 overflow-x-auto border-b"
+      >
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -170,7 +174,7 @@ function Studio({ arch }: { arch: Architecture }) {
             disabled={t.disabled}
             onClick={() => setTab(t.id)}
             className={cn(
-              "text-body-sm -mb-px cursor-pointer border-b-2 px-4 py-2.5 font-semibold disabled:cursor-not-allowed disabled:opacity-40",
+              "text-body-sm -mb-px shrink-0 cursor-pointer border-b-2 px-4 py-2.5 font-semibold whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-40",
               tab === t.id
                 ? "border-agent text-strong"
                 : "text-muted hover:text-foreground border-transparent",

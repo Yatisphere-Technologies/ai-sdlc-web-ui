@@ -21,6 +21,7 @@
     "@throughline/tokens": "workspace:*",
     "@throughline/ui": "workspace:*",
     "docx": "9.5.1",
+    "gsap": "^3.15.1",
     "lucide-react": "^1.61.0",
     "mammoth": "1.9.1",
     "pdfjs-dist": "4.10.38",

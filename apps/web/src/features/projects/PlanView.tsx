@@ -176,7 +176,7 @@ export function PlanView({
         </div>
       </Card>
 
-      <Card padding="none">
+      <Card padding="none" className="overflow-x-auto">
         <table className="w-full border-collapse text-left">
           <thead>
             <tr className="border-line border-b">

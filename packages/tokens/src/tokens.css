@@ -19,21 +19,22 @@
  */
 
 /* ── 1. Primitives ─────────────────────────────────────────────────────────── */
+/* Dark palette "Signal": warm graphite neutrals; mint is the only glow, amber marks gates. */
 :root {
-  --palette-void: #060a17;
-  --palette-deck: #0b1226;
-  --palette-raised: #111a33;
-  --palette-sunken: #03060f;
-  --palette-nav: #080e20;
-  --palette-hairline: #1c2848;
-  --palette-line-strong: #2a3a63;
-  --palette-starlight: #eaf0ff;
+  --palette-void: #0b0c0e;
+  --palette-deck: #121316;
+  --palette-raised: #18191d;
+  --palette-sunken: #070809;
+  --palette-nav: #0e0f11;
+  --palette-hairline: #222429;
+  --palette-line-strong: #32353c;
+  --palette-starlight: #ecebe6;
   --palette-white: #ffffff;
-  --palette-haze: #93a1c3;
-  --palette-haze-light: #b4c0dc;
-  --palette-haze-dim: #6f7fa6;
-  --palette-haze-ghost: #3d4c75;
-  --palette-code: #d5ddf2;
+  --palette-haze: #9b9a93;
+  --palette-haze-light: #bdbcb5;
+  --palette-haze-dim: #75746e;
+  --palette-haze-ghost: #43443f;
+  --palette-code: #dcdbd5;
 
   --palette-mint: #3ee6c1;
   --palette-mint-light: #8cf2da;
@@ -49,11 +50,11 @@
   --palette-amber-wash: #1c160a;
   --palette-amber-line: #5a4520;
 
-  --palette-ion: #6e8bff;
-  --palette-ion-light: #9fb2ff;
-  --palette-ion-deep: #141e45;
-  --palette-periwinkle: #c9d3ff;
-  --palette-periwinkle-deep: #1a2550;
+  --palette-ion: #8e9cf0;
+  --palette-ion-light: #b3bdf5;
+  --palette-ion-deep: #1a1d33;
+  --palette-periwinkle: #cdd2f0;
+  --palette-periwinkle-deep: #1f2236;
 
   --palette-green: #7fe3a6;
   --palette-green-deep: #10301f;
@@ -73,11 +74,11 @@
   --palette-pink: #ff8fd0;
   --palette-pink-deep: #35122b;
 
-  --palette-grid-dot: rgb(147 161 195 / 0.12);
+  --palette-grid-dot: rgb(236 235 230 / 0.06);
   --palette-mint-glow: rgb(62 230 193 / 0.45);
   --palette-mint-shimmer-low: rgb(62 230 193 / 0.12);
   --palette-mint-shimmer-high: rgb(62 230 193 / 0.75);
-  --palette-scrim: rgb(6 10 23 / 0.8);
+  --palette-scrim: rgb(11 12 14 / 0.8);
   --palette-diff-add: rgb(127 227 166 / 0.07);
   --palette-diff-del: rgb(255 107 94 / 0.08);
 
@@ -435,6 +436,11 @@
   --text-micro--line-height: 1rem;
   --text-nano: 0.625rem;
   --text-nano--line-height: 0.875rem;
+  /* Marketing delivery board only: SVG labels drawn small in viewBox units */
+  --text-board: 0.5625rem;
+  --text-board--line-height: 0.75rem;
+  --text-board-sm: 0.5rem;
+  --text-board-sm--line-height: 0.6875rem;
 
   --tracking-eyebrow: 0.14em;
   --tracking-label: 0.08em;
@@ -633,26 +639,6 @@
   @keyframes draw-in {
     to {
       stroke-dashoffset: 0;
-    }
-  }
-  /* Marketing: dots travelling along the hero curve (set offset-path inline) */
-  .orbit {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 10px;
-    height: 10px;
-    border-radius: 9999px;
-    background: currentColor;
-    box-shadow: 0 0 16px currentColor;
-    animation: orbit 7s linear infinite;
-  }
-  @keyframes orbit {
-    from {
-      offset-distance: 0%;
-    }
-    to {
-      offset-distance: 100%;
     }
   }
   /* Marketing: gently bobbing cards */

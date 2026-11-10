@@ -14,7 +14,7 @@ export function WorkspaceChooser() {
 
   return (
     <div className="bg-grid min-h-screen px-6 py-10 lg:px-16">
-      <div className="mx-auto flex max-w-5xl flex-col gap-10">
+      <div className="mx-auto flex max-w-400 flex-col gap-10">
         <div className="flex items-center justify-between">
           <Logo />
           <ThemeMenu />
@@ -30,7 +30,7 @@ export function WorkspaceChooser() {
           </p>
         </header>
 
-        <ul className="grid gap-4 md:grid-cols-2">
+        <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {session.tenants.map((t, i) => {
             const membership = session.memberships.find((m) => m.tenantId === t.id);
             return (
