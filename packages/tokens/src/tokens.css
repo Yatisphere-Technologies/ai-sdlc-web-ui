@@ -203,6 +203,8 @@
   --grid-dot: var(--palette-grid-dot);
   --shimmer-low: var(--palette-mint-shimmer-low);
   --shimmer-high: var(--palette-mint-shimmer-high);
+  --skeleton: var(--palette-raised);
+  --skeleton-lit: color-mix(in srgb, var(--palette-raised), var(--palette-starlight) 9%);
 
   /* Architecture diagrams: one colour per kind of component, used only on diagrams */
   --dg-person: var(--palette-periwinkle);
@@ -292,6 +294,8 @@
   --grid-dot: var(--palette-paper-dot);
   --shimmer-low: var(--palette-teal-shimmer-low);
   --shimmer-high: var(--palette-teal-shimmer-high);
+  --skeleton: var(--palette-sheet-sunken);
+  --skeleton-lit: color-mix(in srgb, var(--palette-sheet-sunken), var(--palette-ink) 8%);
 
   --dg-person: var(--palette-indigo);
   --dg-person-soft: var(--palette-indigo-soft);
@@ -566,6 +570,38 @@
     );
     background-size: 200% 100%;
     animation: var(--animate-shimmer);
+  }
+  /* Loading placeholder: neutral blocks that light up one after another (mint is kept for agent work) */
+  .bg-skeleton {
+    background-color: var(--skeleton);
+    animation: skeleton-stagger 1.8s ease-in-out infinite;
+  }
+  .bg-skeleton:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+  .bg-skeleton:nth-child(3) {
+    animation-delay: 0.24s;
+  }
+  .bg-skeleton:nth-child(4) {
+    animation-delay: 0.36s;
+  }
+  .bg-skeleton:nth-child(5) {
+    animation-delay: 0.48s;
+  }
+  .bg-skeleton:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+  .bg-skeleton:nth-child(n + 7) {
+    animation-delay: 0.72s;
+  }
+  @keyframes skeleton-stagger {
+    0%,
+    100% {
+      background-color: var(--skeleton);
+    }
+    40% {
+      background-color: var(--skeleton-lit);
+    }
   }
   /* Something is live: pulsing ring in the element's current colour */
   .live-ping {
