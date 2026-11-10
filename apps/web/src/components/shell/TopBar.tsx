@@ -28,20 +28,29 @@ export function TopBar() {
   useCommandShortcut(useCallback(() => setSearching(true), []));
   return (
     <header className="border-line bg-scrim sticky top-0 z-10 flex flex-wrap items-center gap-3 border-b px-6 py-3 backdrop-blur-md lg:px-9">
-      <TenantSwitcher />
-      <ProjectSwitcher />
+      <div className="min-w-0 flex-1 sm:flex-none">
+        <TenantSwitcher />
+      </div>
+      {/* On phones the project picker gets its own row under the workspace and actions. */}
+      <div className="order-last w-full sm:order-none sm:w-auto">
+        <ProjectSwitcher />
+      </div>
       <button
         type="button"
         onClick={() => setSearching(true)}
         aria-label="Search or ask (⌘K)"
-        className="border-line bg-surface text-muted hover:border-line-strong ml-auto flex h-11 w-full max-w-xs cursor-pointer items-center gap-2 rounded-md border px-3 text-left sm:w-auto sm:min-w-44 sm:flex-1"
+        className="border-line bg-surface text-muted hover:border-line-strong flex size-11 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border text-left sm:ml-auto sm:w-auto sm:max-w-xs sm:min-w-44 sm:flex-1 sm:justify-start sm:px-3"
       >
         <Search className="size-4" aria-hidden />
-        <span className="text-body text-faint min-w-0 flex-1 truncate">Search or ask…</span>
-        <Kbd>⌘K</Kbd>
+        <span className="text-body text-faint hidden min-w-0 flex-1 truncate sm:inline">Search or ask…</span>
+        <Kbd className="hidden sm:inline-flex">⌘K</Kbd>
       </button>
       <CommandPalette open={searching} onOpenChange={setSearching} />
-      {config.useMocks ? <Badge mono>Sample data</Badge> : null}
+      {config.useMocks ? (
+        <Badge mono className="hidden sm:inline-flex">
+          Sample data
+        </Badge>
+      ) : null}
       <ThemeMenu />
       <Menu>
         <MenuTrigger asChild>

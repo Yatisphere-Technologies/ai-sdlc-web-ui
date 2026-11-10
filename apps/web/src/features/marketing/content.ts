@@ -12,21 +12,6 @@ import {
 
 // Marketing copy in one place so it can move to a CMS later without touching components.
 
-export const HERO_STAGES = [
-  // Points sampled on HERO_CURVE (percent of the 960×320 box) so markers sit exactly on the line.
-  { label: "SHAPE · G0", x: 4.2, y: 50, gate: true },
-  { label: "SPEC · G1", x: 14.8, y: 28.9, gate: true },
-  { label: "DESIGN", x: 27.1, y: 21.9, gate: false },
-  { label: "REVIEW · G2", x: 39.3, y: 28.9, gate: true },
-  { label: "BUILD", x: 50, y: 50, gate: false },
-  { label: "VERIFY · G3", x: 63, y: 73.6, gate: true },
-  { label: "RELEASE · G4", x: 77.9, y: 77, gate: true },
-  { label: "OPERATE", x: 89.3, y: 65.1, gate: false },
-  { label: "LEARN", x: 95.8, y: 50, gate: false },
-] as const;
-
-export const HERO_CURVE = "M 40 160 C 160 40, 360 40, 480 160 S 800 280, 920 160";
-
 /** Tools on the landing strip; each has its official logo in components/brand. */
 export const TOOLS = [
   "jira",

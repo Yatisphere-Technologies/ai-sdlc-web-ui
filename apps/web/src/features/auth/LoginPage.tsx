@@ -73,7 +73,7 @@ export function LoginPage({ redirectTo }: { redirectTo: string }) {
             other.
           </p>
         </div>
-        <span className="text-micro text-faint font-mono">THROUGHLINE · BY LATENTBRIDGE</span>
+        <span className="text-micro text-faint font-mono">THROUGHLINE</span>
       </aside>
 
       <main className="flex flex-1 items-center justify-center px-6 py-12">

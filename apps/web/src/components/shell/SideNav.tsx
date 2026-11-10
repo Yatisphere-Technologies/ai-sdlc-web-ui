@@ -7,7 +7,7 @@ import { useTenant } from "@/tenancy";
 import { Logo } from "./Logo";
 
 const itemClass =
-  "flex min-h-10 items-center gap-3 rounded-md px-3 text-body text-muted transition-colors hover:bg-surface-raised hover:text-strong";
+  "flex min-h-10 shrink-0 items-center gap-3 whitespace-nowrap rounded-md px-3 text-body text-muted transition-colors hover:bg-surface-raised hover:text-strong";
 const activeClass = "bg-surface-raised text-strong";
 
 function ApprovalCount() {
